@@ -93,13 +93,12 @@ pub fn side_bar() -> Node<Msg> {
             class![
                 C.h_24,
                 C.text_white,
-                C.tracking_4,
+                C.tracking_wide,
                 C.uppercase,
                 C.font_bold,
                 C.p_4,
                 C.text_left,
-                C.text_middle,
-                C.leading_lg,
+                C.leading_relaxed,
                 C.text_lg
             ],
             "Rust Academy"
