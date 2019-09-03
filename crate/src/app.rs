@@ -11,8 +11,6 @@ use serde::Deserialize;
 pub struct Model {
     pub clicks: i32,
     pub search_text: String,
-    pub random_number: i32,
-    pub clock_time: Option<String>,
     pub should_render_next_frame: bool,
 }
 
@@ -21,8 +19,6 @@ impl Default for Model {
         Self {
             clicks: 0,
             search_text: Default::default(),
-            random_number: ts_apis::helpers::get_random_number(0, 100),
-            clock_time: None,
             should_render_next_frame: false,
         }
     }
@@ -206,22 +202,16 @@ pub fn window_events(_model: &Model) -> Vec<Listener<Msg>> {
 pub enum Msg {
     Increment,
     SearchTyped(String),
-    NewRandomNumber,
     KeyPressed(String),
-    OnClockTick(String),
 }
 
 pub fn update(msg: Msg, model: &mut Model, orders: &mut impl Orders<Msg>) {
     match msg {
         Msg::Increment => model.clicks += 1,
         Msg::SearchTyped(input) => model.search_text = input,
-        Msg::NewRandomNumber => model.random_number = ts_apis::helpers::get_random_number(0, 100),
         Msg::KeyPressed(key) => {
             log!(key);
             orders.skip();
-        }
-        Msg::OnClockTick(time) => {
-            model.clock_time = Some(time);
         }
     }
 }
