@@ -132,9 +132,10 @@ module.exports = (env, argv) => {
           test: /\.jpe?g$|\.svg$|\.gif$|\.png$|\.ico$/i,
           use: [
             {
-              loader: "file-loader",
+              loader: "url-loader",
               options: {
-                name: "[path][name].[ext]"
+                name: "./img/[name].[ext]",
+                limit: 10000,
               }
             }
           ]
@@ -143,9 +144,10 @@ module.exports = (env, argv) => {
           test: /\.otf$|\.woff$|\.woff2$|\.eot$|\.ttf/i,
           use: [
             {
-              loader: "file-loader",
+              loader: "url-loader",
               options: {
-                name: "[path][name].[ext]"
+                name: "./fonts/[name].[ext]",
+                limit: 10000,
               }
             }
           ]
