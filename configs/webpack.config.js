@@ -101,6 +101,19 @@ module.exports = (env, argv) => {
                 // https://github.com/webpack-contrib/css-loader/issues/228
                 importLoaders: 1
               }
+            }
+          ]
+        },
+        {
+          test: /\.pcss$/,
+          use: [
+            "style-loader",
+            {
+              loader: "css-loader",
+              options: {
+                // https://github.com/webpack-contrib/css-loader/issues/228
+                importLoaders: 1
+              }
             },
             {
               loader: "postcss-loader",
@@ -114,7 +127,29 @@ module.exports = (env, argv) => {
               }
             }
           ]
-        }
+        },
+        {
+          test: /\.jpe?g$|\.svg$|\.gif$|\.png$|\.ico$/i,
+          use: [
+            {
+              loader: "file-loader",
+              options: {
+                name: "[path][name].[ext]"
+              }
+            }
+          ]
+        },
+        {
+          test: /\.otf$|\.woff$|\.woff2$|\.eot$|\.ttf/i,
+          use: [
+            {
+              loader: "file-loader",
+              options: {
+                name: "[path][name].[ext]"
+              }
+            }
+          ]
+        },
       ]
     }
   };

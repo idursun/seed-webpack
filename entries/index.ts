@@ -1,4 +1,5 @@
 import "../css/styles.css";
+import "../css/styles.pcss";
 import { startClock } from "../crate/src/ts/clock";
 
 declare global {

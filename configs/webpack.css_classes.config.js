@@ -30,11 +30,42 @@ module.exports = (env, argv) => {
           ]
         },
         {
+          test: /\.jpe?g$|\.svg$|\.gif$|\.png$|\.ico$/i,
+          use: [
+            {
+              loader: "file-loader",
+              options: {
+                emitFile: false,
+                name: "[path][name].[ext]"
+              }
+            }
+          ]
+        },
+        {
+          test: /\.otf$|\.woff$|\.woff2$|\.eot$|\.ttf/i,
+          use: [
+            {
+              loader: "file-loader",
+              options: {
+                emitFile: false,
+                name: "[path][name].[ext]"
+              }
+            }
+          ]
+        },
+        {
           test: /\.ts$/,
           loader: "ts-loader?configFile=configs/tsconfig.css_classes.json"
         },
         {
           test: /\.css$/,
+          use: [
+            "style-loader",
+            { loader: "css-loader", options: { importLoaders: 1 } },
+          ]
+        },
+        {
+          test: /\.pcss$/,
           use: [
             "style-loader",
             { loader: "css-loader", options: { importLoaders: 1 } },
