@@ -47,23 +47,34 @@ pub fn button(name: &'static str) -> Node<Msg> {
 
 pub fn card(title: &'static str, price: u32, description: Option<Vec<Node<Msg>>>) -> Node<Msg> {
     div![
-        class![ "w-full flex flex-col justify-center m-2 px-4 border rounded rounded-l-lg border-l-4 border-gray-400 shadow-lg border-blue-300" ],
-        div![ class![C.py_2],
-            span![ class! [C.font_bold, C.text_lg], title ],
+        class![
+            C.w_full,
+            C.flex,
+            C.flex_col,
+            C.justify_center,
+            C.m_2,
+            C.px_4,
+            C.border,
+            C.rounded,
+            C.rounded_l_lg,
+            C.border_l_4,
+            C.border_gray_400,
+            C.shadow_lg,
+            C.border_blue_300
         ],
+        div![class![C.py_2], span![class![C.font_bold, C.text_lg], title],],
         div![
-            class![ C.flex_grow, C.py_2 ],
+            class![C.flex_grow, C.py_2],
             description.unwrap_or_else(|| vec![p!["No description"]]),
         ],
         div![
             class![C.py_1],
-            span![ class![C.text_sm, C.text_gray_500, C.font_semibold], format!("Price: {price}", price = price) ]
+            span![
+                class![C.text_sm, C.text_gray_500, C.font_semibold],
+                format!("Price: {price}", price = price)
+            ]
         ],
-        div![
-            class![C.py_2],
-            button("Purchase"),
-            button("Download"),
-        ]
+        div![class![C.py_2], button("Purchase"), button("Download"),]
     ]
 }
 
@@ -79,11 +90,24 @@ pub fn side_bar() -> Node<Msg> {
             C.h_screen
         ],
         h1![
-            class!["h-24 text-white tracking-4 uppercase font-bold p-4 text-left text-middle leading-lg text-lg"],"Rust Academy"],
-            side_bar_section("Courses", "book", false),
-            side_bar_section("Lists", "address-book", false),
-            side_bar_section("Repositories", "address-book", false)
-        ]
+            class![
+                C.h_24,
+                C.text_white,
+                C.tracking_4,
+                C.uppercase,
+                C.font_bold,
+                C.p_4,
+                C.text_left,
+                C.text_middle,
+                C.leading_lg,
+                C.text_lg
+            ],
+            "Rust Academy"
+        ],
+        side_bar_section("Courses", "book", false),
+        side_bar_section("Lists", "address-book", false),
+        side_bar_section("Repositories", "address-book", false)
+    ]
 }
 
 fn side_bar_section_item(name: &'static str) -> Node<Msg> {
@@ -114,13 +138,25 @@ pub fn side_bar_section(title: &'static str, icon: &'static str, is_collapsed: b
     div![
         class![C.m_2, C.my_3],
         div![
-            class!["flex items-center font-bold text-gray-500 uppercase pb-2 px-2 tracking-wide cursor-pointer hover:text-white"], 
-            i![ class![C.flex_none, &icon_class] ],
-            span![ class!["flex-grow mx-1 select-none"], title], 
-            i![ class![C.flex_none, &post_icon] ]
+            class![
+                C.flex,
+                C.items_center,
+                C.font_bold,
+                C.text_gray_500,
+                C.uppercase,
+                C.pb_2,
+                C.px_2,
+                C.tracking_wide,
+                C.cursor_pointer,
+                C.hover__text_white
+            ],
+            i![class![C.flex_none, &icon_class]],
+            span![class![C.flex_grow, C.mx_1, C.select_none], title],
+            i![class![C.flex_none, &post_icon]]
         ],
         //items goes here
-        ul![ class![C.list_none],
+        ul![
+            class![C.list_none],
             side_bar_section_item("Item 1"),
             side_bar_section_item("Item 2"),
         ]
